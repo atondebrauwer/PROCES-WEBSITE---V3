@@ -1,0 +1,817 @@
+/* =========================
+   RESET & BASIS
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+:root {
+  --bg-main: #0f2042;
+  --bg-panel: #162f5e;
+  --bg-panel-soft: #1e3b73;
+
+  --text-main: #ffffff;
+  --text-muted: #b6c6e3;
+
+  --accent-green: #00e676;
+  --accent-yellow: #ffd600;
+  --accent-red: #ff3d3d;
+
+  --border-soft: rgba(255, 255, 255, 0.08);
+}
+
+/* =========================
+   GLOBAL ORGANIC BACKGROUND
+========================= */
+body {
+  background:
+    radial-gradient(60% 50% at 20% 30%, #0a2cff 0%, transparent 70%),
+    radial-gradient(55% 45% at 80% 25%, #001a66 0%, transparent 70%),
+    radial-gradient(70% 60% at 60% 75%, #003cff 0%, transparent 75%),
+    radial-gradient(80% 70% at 30% 85%, #000d33 0%, transparent 80%),
+    linear-gradient(180deg, #050b2e, #020619);
+  background-size: 120% 120%;
+  animation: organicFlow 22s ease-in-out infinite;
+
+  color: var(--text-main);
+  min-height: 100vh;
+}
+
+@keyframes organicFlow {
+  0% {
+    background-position:
+      20% 30%,
+      80% 25%,
+      60% 75%,
+      30% 85%,
+      center;
+  }
+  50% {
+    background-position:
+      30% 40%,
+      70% 35%,
+      50% 65%,
+      40% 75%,
+      center;
+  }
+  100% {
+    background-position:
+      20% 30%,
+      80% 25%,
+      60% 75%,
+      30% 85%,
+      center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none; }
+}
+
+/* =========================
+   HOME WRAPPER
+========================= */
+.home-hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   HEADER & NAV (GLASS)
+========================= */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+
+  background: rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid var(--border-soft);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+header h1 {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+nav ul {
+  display: flex;
+  gap: 0.75rem;
+  list-style: none;
+}
+
+nav a {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.45rem 1.2rem;
+  border-radius: 999px;
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: all 0.25s ease;
+  border: 1px solid var(--border-soft);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+/* =========================
+   HERO
+========================= */
+.hero,
+.week-hero {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.hero h2,
+.week-hero h2 {
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+/* =========================
+   WEEK BUTTONS (PILLS)
+========================= */
+.week-grid {
+  max-width: 1100px;
+  margin: 4rem auto 2rem;
+  padding: 0 2rem;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.week-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.9rem 1.6rem;
+  border-radius: 999px;
+
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  font-size: 0.95rem;
+
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-soft);
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  transform: rotate(var(--r, 0deg)) translateY(var(--y, 0px));
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+
+  animation: floaty 6s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
+}
+
+.week-card.filled {
+  background: var(--bg-panel-soft);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 14px 35px rgba(0,0,0,0.35);
+}
+
+.week-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: rotate(var(--r, 0deg)) translateY(calc(var(--y, 0px) - 6px)) scale(1.03);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.45);
+}
+
+.week-card.filled:hover {
+  background: #274a8f;
+}
+
+@keyframes floaty {
+  0%, 100% { transform: rotate(var(--r, 0deg)) translateY(var(--y, 0px)); }
+  50% { transform: rotate(var(--r, 0deg)) translateY(calc(var(--y, 0px) - 10px)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .week-card { animation: none; }
+}
+
+/* =========================
+   WEEK CONTENT
+========================= */
+.week-content {
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+
+.week-section,
+.container {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-soft);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.week-section h3 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.week-section p {
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 750px;
+}
+
+/* =========================
+   IMAGE GRID
+========================= */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.image-grid img {
+  width: 100%;
+  border-radius: 14px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-grid img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* =========================
+   PROTOTYPE LINK
+========================= */
+.prototype-link a {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.5rem;
+  border-radius: 999px;
+  background: var(--bg-panel-soft);
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: all 0.25s ease;
+}
+
+.prototype-link a:hover {
+  background: var(--text-main);
+  color: var(--bg-main);
+}
+
+/* =========================
+   DROPDOWN NAV
+========================= */
+.dropdown { position: relative; }
+
+.dropdown-toggle { cursor: pointer; user-select: none; }
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+
+  display: block;
+  list-style: none;
+  padding: 0.5rem;
+  margin: 0;
+
+  background: var(--bg-panel);
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: all 0.2s ease;
+  z-index: 999;
+}
+
+.dropdown-menu li { display: block; }
+
+/* dropdown links: geen pill */
+.dropdown-menu a {
+  display: block;
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text-main);
+  background: transparent;
+  border: none;
+  transform: none;
+}
+
+.dropdown-menu a:hover {
+  background: var(--bg-panel-soft);
+}
+
+.dropdown.open > .dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+@media (hover: hover) {
+  .dropdown:hover > .dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+/* =========================
+   FOOTER + BACK HOME
+========================= */
+footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+footer a {
+  color: var(--text-main);
+  text-decoration: none;
+}
+
+.back-home {
+  margin: 2rem auto 0;
+  text-align: center;
+}
+
+.back-home a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  padding: 0.9rem 1.8rem;
+  border-radius: 999px;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+
+  text-decoration: none;
+  color: var(--text-main);
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-soft);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  transition: all 0.25s ease;
+}
+
+.back-home a:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 35px rgba(0,0,0,0.35);
+}
+
+.back-home a span {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* =========================
+   HOME WEEK GRID (12 + big 13)
+========================= */
+
+.weeks-layout{
+  max-width: 1100px;
+  margin: 4rem auto 2rem;
+  padding: 0 2rem;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+}
+
+/* responsive */
+@media (max-width: 900px){
+  .weeks-layout{ grid-template-columns: repeat(3, 1fr); }
+  .week-tile--big{ grid-column: 1 / -1; }
+}
+@media (max-width: 600px){
+  .weeks-layout{ grid-template-columns: repeat(2, 1fr); }
+  .week-tile--big{ grid-column: 1 / -1; }
+}
+
+.week-tile{
+  position: relative;
+  isolation: isolate;
+
+  height: 74px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+
+  /* glass */
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border-soft);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  transform: translateY(0) scale(1);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+/* interactive gradient overlay */
+.week-tile::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  filter: blur(0px);
+
+  background:
+    radial-gradient(120% 90% at 20% 20%, rgba(10,44,255,0.55), transparent 55%),
+    radial-gradient(120% 90% at 80% 30%, rgba(0,26,102,0.55), transparent 60%),
+    radial-gradient(120% 90% at 50% 90%, rgba(0,60,255,0.45), transparent 60%);
+  transition: opacity .25s ease, filter .25s ease;
+}
+
+.week-tile:hover{
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 22px 55px rgba(0,0,0,0.45);
+  border-color: rgba(255,255,255,0.18);
+}
+
+.week-tile:hover::before{
+  opacity: 1;
+  filter: blur(2px);
+}
+
+/* subtle float like your style */
+.week-tile{
+  animation: tileFloat 6.5s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
+}
+@keyframes tileFloat{
+  0%,100%{ transform: translateY(0) }
+  50%{ transform: translateY(-8px) }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .week-tile{ animation: none; }
+}
+
+/* Big Week 13 */
+.week-tile--big{
+  grid-column: 1 / -1;
+  height: 120px;
+  border-radius: 18px;
+
+  display: grid;
+  place-items: center;
+  gap: 0.25rem;
+
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.14);
+}
+
+.week-tile--big::before{
+  opacity: 0.55;
+}
+
+.week-tile--big:hover::before{
+  opacity: 1;
+}
+
+.week-tile--big .big-number{
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  opacity: 0.95;
+}
+
+.week-tile--big .big-label{
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 650;
+}
+
+/* =========================
+   WEEK GRID – 4 PER RIJ
+========================= */
+
+.weeks-layout{
+  max-width: 1100px;
+  margin: 4rem auto 2rem;
+  padding: 0 2rem;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.4rem;
+}
+
+/* normale week-knoppen */
+.week-tile{
+  height: 120px;
+  border-radius: 20px;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+
+  color: var(--text-main);
+  text-decoration: none;
+
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--border-soft);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow: 0 18px 45px rgba(0,0,0,0.35);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+/* hover */
+.week-tile:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 28px 70px rgba(0,0,0,0.55);
+}
+
+/* zwevende animatie */
+.week-tile{
+  animation: tileFloat 6.5s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
+}
+
+@keyframes tileFloat{
+  0%,100%{ transform: translateY(0); }
+  50%{ transform: translateY(-12px); }
+}
+
+/* =========================
+   WEEK 13 – BREEDTE = 4 KNOPPEN
+========================= */
+
+.week-tile--big{
+  grid-column: 1 / -1;   /* 🔑 exact 4 kolommen breed */
+  height: 240px;
+
+  border-radius: 26px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.22);
+
+  box-shadow: 0 35px 90px rgba(0,0,0,0.6);
+
+  display: grid;
+  place-items: center;
+  gap: 0.4rem;
+}
+
+/* glow */
+.week-tile--big::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius: inherit;
+  z-index:-1;
+
+  background:
+    radial-gradient(120% 90% at 20% 20%, rgba(10,44,255,0.6), transparent 55%),
+    radial-gradient(120% 90% at 80% 30%, rgba(0,26,102,0.6), transparent 60%),
+    radial-gradient(120% 90% at 50% 90%, rgba(0,60,255,0.5), transparent 60%);
+  opacity: .85;
+  filter: blur(6px);
+}
+
+/* typografie week 13 */
+.week-tile--big .big-number{
+  font-size: 3.4rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+.week-tile--big .big-label{
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px){
+  .weeks-layout{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .week-tile--big{
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px){
+  .weeks-layout{
+    grid-template-columns: 1fr;
+  }
+
+  .week-tile{
+    height: 100px;
+  }
+
+  .week-tile--big{
+    height: 200px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .week-tile{ animation: none; }
+}
+
+/* =========================
+   WEEK GRID – BREEDER
+========================= */
+
+.weeks-layout{
+  max-width: 1320px;      /* ⬅️ groter dan 1100px */
+  padding: 0 3rem;        /* meer zijruimte */
+  gap: 1.8rem;            /* iets meer ademruimte */
+}
+
+/* alle week-knoppen */
+.week-tile{
+  height: 130px;          /* iets hoger voor balans */
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+
+  border-radius: 22px;
+}
+
+/* hover blijft strak */
+.week-tile:hover{
+  transform: translateY(-9px);
+}
+
+/* =========================
+   WEEK 13 – MATCHT 4 KNOPPEN
+========================= */
+
+.week-tile--big{
+  height: 260px;          /* proportioneel groter */
+  border-radius: 30px;
+}
+
+/* typografie iets groter */
+.week-tile--big .big-number{
+  font-size: 3.8rem;
+}
+
+.week-tile--big .big-label{
+  font-size: 1.3rem;
+}
+
+/* =========================
+   WEEK GRID – HORIZONTAAL GROTER
+========================= */
+
+.weeks-layout{
+  max-width: 1500px;      /* ⬅️ duidelijk breder */
+  padding: 0 4rem;        /* meer zijruimte */
+  gap: 2rem;              /* lucht tussen knoppen */
+}
+
+/* knoppen: hoogte blijft gelijk */
+.week-tile{
+  height: 120px;          /* 🔒 niet hoger */
+  padding-inline: 1.8rem; /* optisch breder gevoel */
+}
+
+/* week 13 blijft matchen */
+.week-tile--big{
+  height: 240px;          /* onveranderd */
+}
+
+
+/* =========================
+   TYPEWRITER (JS-driven)
+========================= */
+.typewriter{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+}
+
+.typewriter::after{
+  content: "";
+  width: 3px;
+  height: 1em;
+  background: currentColor;
+  display: inline-block;
+  transform: translateY(2px);
+  animation: blink 0.8s steps(1, end) infinite;
+}
+
+@keyframes blink{
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .typewriter::after{ animation: none; }
+}
+.intro{
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 2rem;
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+
+  color: #b6c6e3;
+}
+
+.intro h3{
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.intro p{
+  line-height: 1.6;
+}
+
+/* =========================
+   LIGHTBOX (FOTO ZOOM)
+========================= */
+.lightbox{
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 10, 30, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  z-index: 9999;
+}
+
+.lightbox.open{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox img{
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: 18px;
+
+  transform: scale(0.8);
+  opacity: 0;
+
+  transition: transform 0.45s ease, opacity 0.45s ease;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.7);
+}
+
+.lightbox.open img{
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* cursor feedback */
+.image-grid img{
+  cursor: zoom-in;
+}

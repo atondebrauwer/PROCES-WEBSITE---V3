@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Week 1 – Ontwerpdocumentatie</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<script>
+  // Dropdown toggle voor alle dropdowns
+  document.addEventListener("click", (e) => {
+    const toggle = e.target.closest(".dropdown-toggle");
+    const dropdowns = document.querySelectorAll(".dropdown");
+
+    // als je op een toggle klikt
+    if (toggle) {
+      e.preventDefault();
+      const parent = toggle.closest(".dropdown");
+
+      // sluit alle andere dropdowns
+      dropdowns.forEach(d => {
+        if (d !== parent) d.classList.remove("open");
+      });
+
+      // toggle deze dropdown
+      parent.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", parent.classList.contains("open"));
+      return;
+    }
+
+    // klik buiten: sluit alles
+    dropdowns.forEach(d => d.classList.remove("open"));
+  });
+</script>
+
+
+
+<body>
+
+<header>
+  <h1>Aton de brauwer – Groep 2</h1>
+
+<nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+        Weken ▾
+      </a>
+
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="week01.html">Week 1</a></li>
+        <li><a href="week02.html">Week 2</a></li>
+        <li><a href="week03.html">Week 3</a></li>
+        <li><a href="week04.html">Week 4</a></li>
+        <li><a href="week05.html">Week 5</a></li>
+        <li><a href="week06.html">Week 6</a></li>
+        <li><a href="week07.html">Week 7</a></li>
+        <li><a href="week08.html">Week 8</a></li>
+        <li><a href="week09.html">Week 9</a></li>
+        <li><a href="week10.html">Week 10</a></li>
+        <li><a href="week11.html">Week 11</a></li>
+        <li><a href="week12.html">Week 12</a></li>
+        <li><a href="week13.html">Week 13</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+</header>
+
+<div class="week-hero">
+  <h2>WEEK 1</h2>
+</div>
+
+<div class="week-content">
+
+
+
+  <section class="week-section">
+    <h3>Doel van de week</h3>
+    <p>
+      Het doel van deze eerste week is om een grondig inzicht te krijgen in de opdracht en duidelijk af te bakenen wat er precies ontworpen moet worden. Dit vormt de basis voor alle volgende ontwerpbeslissingen.
+    </p>
+  </section>
+
+  <section class="week-section">
+    <h3>Oefeningen & onderzoek</h3>
+    <p>
+      In deze fase heb ik de opdracht Lost in Tra(i)nslation zorgvuldig doorgenomen. De focus ligt op het ontwerpen van een meertalig informatiesysteem voor Belgische treinstations, waarbij duidelijkheid, toegankelijkheid en bruikbaarheid onder tijdsdruk centraal staan. Het systeem moet functioneren voor reizigers met verschillende taalachtergronden (Nederlands, Frans en Duits) en gebruikmaken van zowel tekst als visuele elementen om informatie begrijpelijk over te brengen.
+
+      Vertrekbord
+       </p>
+
+       <p>
+Het vertrekbord geeft een overzicht van aankomende en vertrekkende treinen. Essentiële informatie zoals vertrektijd, bestemming, treintype, perronnummer en status moet in meerdere talen duidelijk en snel leesbaar blijven.
+
+Perronscherm
+
+Het perronscherm toont real-time informatie voor één perron en wordt gebruikt onder hoge tijdsdruk. Een duidelijke visuele hiërarchie, opvallende statusmeldingen en consistente lay-out zijn hier cruciaal.
+
+Wagonindeling
+
+Het wagonindelingsscherm visualiseert de samenstelling van de trein en helpt reizigers zich correct op het perron te positioneren. Iconen en schema’s beperken de nood aan tekst en verminderen taalbarrières.
+    </p>
+
+    <!-- FOTO'S -->
+    <div class="image-grid">
+      <img src="assets/images/MOODBORD.jpg" alt="Schets 1">
+      <img src="assets/images/Trainstation.jpg" alt="Schets 2">
+    </div>
+  </section>
+
+
+
+
+
+  <section class="week-section">
+    <h3>Reflectie</h3>
+    <p>
+    Een van de grootste uitdagingen voor reizigers is het verwerken van informatie onder tijdsdruk, zeker wanneer deze in een andere taal wordt aangeboden. Meertalige tekst kan snel leiden tot visuele overload, waardoor cruciale informatie zoals vertrektijd, perronnummer of vertragingen minder snel opvalt. Daarnaast zorgt stress ervoor dat reizigers minder geneigd zijn om lange teksten te lezen, wat het belang van duidelijke iconen, sterke hiërarchie en consistente lay-out benadrukt.
+    </p>
+  </section>
+
+</div>
+
+<footer>
+
+
+<div class="back-home">
+  <a href="index.html">
+    <span>←</span> Terug naar overzicht
+  </a>
+</div>
+
+
+</footer>
+
+</body>
+</html>
